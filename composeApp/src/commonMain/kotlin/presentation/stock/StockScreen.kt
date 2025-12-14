@@ -24,6 +24,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import domain.model.StockItem
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -34,8 +35,6 @@ import zaico.composeapp.generated.resources.icon_content_descriptions_add
 import zaico.composeapp.generated.resources.icon_content_descriptions_delete
 import zaico.composeapp.generated.resources.stock_screen_label_stock_quantity
 import zaico.composeapp.generated.resources.stock_screen_title
-
-data class StockItem(val id: Long, val name: String, val quantity: Int)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -49,9 +48,11 @@ fun StockScreen() {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(
-                    text = stringResource(resource = Res.string.stock_screen_title)
-                ) }
+                title = {
+                    Text(
+                        text = stringResource(resource = Res.string.stock_screen_title)
+                    )
+                }
             )
         },
         floatingActionButton = {
