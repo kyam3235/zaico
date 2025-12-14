@@ -62,11 +62,13 @@ fun StockListItem(item: StockItem) {
 @Preview
 @Composable
 fun StockListItemPreview() {
-    StockListItem(
-        item = StockItem(
-            id = 1L,
-            name = "Orange",
-            quantity = 15,
+    MaterialTheme {
+        StockListItem(
+            item = StockItem(
+                id = 1L,
+                name = "Orange",
+                quantity = 15,
+            )
         )
-    )
+    }
 }
