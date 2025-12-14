@@ -66,7 +66,10 @@ fun StockScreen() {
                 items = stockItems,
                 key = { item -> item.id }
             ) { item ->
-                StockListItem(item)
+                StockListItem(
+                    item = item,
+                    onDeleteClick = { /* TODO */ }
+                )
             }
         }
     }

@@ -25,7 +25,10 @@ import zaico.composeapp.generated.resources.icon_content_descriptions_delete
 import zaico.composeapp.generated.resources.stock_screen_label_stock_quantity
 
 @Composable
-fun StockListItem(item: StockItem) {
+fun StockListItem(
+    item: StockItem,
+    onDeleteClick: () -> Unit
+) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
@@ -46,7 +49,7 @@ fun StockListItem(item: StockItem) {
                     style = MaterialTheme.typography.bodyMedium
                 )
             }
-            IconButton(onClick = { /* TODO */ }) {
+            IconButton(onClick = onDeleteClick) {
                 Icon(
                     modifier = Modifier.size(24.dp),
                     painter = painterResource(resource = Res.drawable.delete),
@@ -68,7 +71,8 @@ fun StockListItemPreview() {
                 id = 1L,
                 name = "Orange",
                 quantity = 15,
-            )
+            ),
+            onDeleteClick = {},
         )
     }
 }
