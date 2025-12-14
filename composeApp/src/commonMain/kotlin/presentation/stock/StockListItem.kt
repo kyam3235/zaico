@@ -18,7 +18,6 @@ import androidx.compose.ui.unit.dp
 import domain.model.StockItem
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 import zaico.composeapp.generated.resources.Res
 import zaico.composeapp.generated.resources.delete
 import zaico.composeapp.generated.resources.icon_content_descriptions_delete
@@ -27,10 +26,11 @@ import zaico.composeapp.generated.resources.stock_screen_label_stock_quantity
 @Composable
 fun StockListItem(
     item: StockItem,
-    onDeleteClick: () -> Unit
+    onDeleteClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Card(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = modifier.fillMaxWidth(),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {
         Row(
@@ -59,20 +59,5 @@ fun StockListItem(
                 )
             }
         }
-    }
-}
-
-@Preview
-@Composable
-fun StockListItemPreview() {
-    MaterialTheme {
-        StockListItem(
-            item = StockItem(
-                id = 1L,
-                name = "Orange",
-                quantity = 15,
-            ),
-            onDeleteClick = {},
-        )
     }
 }

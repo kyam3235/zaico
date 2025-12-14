@@ -15,9 +15,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import domain.model.StockItem
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -28,12 +29,10 @@ import zaico.composeapp.generated.resources.stock_screen_title
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun StockScreen() {
-    val stockItems = listOf(
-        StockItem(1L, "Apple", 10),
-        StockItem(2L, "Banana", 20),
-        StockItem(3L, "Orange", 30)
-    )
+fun StockScreen(
+    viewModel: StockViewModel,
+) {
+    val uiState by viewModel.uiState.collectAsState()
 
     Scaffold(
         topBar = {
@@ -46,7 +45,7 @@ fun StockScreen() {
             )
         },
         floatingActionButton = {
-            FloatingActionButton(onClick = { /* TODO */ }) {
+            FloatingActionButton(onClick = { viewModel.addItem() }) {
                 Icon(
                     modifier = Modifier.size(24.dp),
                     painter = painterResource(resource = Res.drawable.add),
@@ -63,12 +62,12 @@ fun StockScreen() {
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             items(
-                items = stockItems,
+                items = uiState.stockItems,
                 key = { item -> item.id }
             ) { item ->
                 StockListItem(
                     item = item,
-                    onDeleteClick = { /* TODO */ }
+                    onDeleteClick = { viewModel.deleteItem(item) }
                 )
             }
         }
@@ -79,6 +78,8 @@ fun StockScreen() {
 @Composable
 private fun StockScreenPreview() {
     MaterialTheme {
-        StockScreen()
+        StockScreen(
+            viewModel = StockViewModel()
+        )
     }
 }
