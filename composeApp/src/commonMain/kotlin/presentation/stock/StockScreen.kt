@@ -35,15 +35,15 @@ import zaico.composeapp.generated.resources.icon_content_descriptions_delete
 import zaico.composeapp.generated.resources.stock_screen_label_stock_quantity
 import zaico.composeapp.generated.resources.stock_screen_title
 
-data class StockItem(val name: String, val quantity: Int)
+data class StockItem(val id: Long, val name: String, val quantity: Int)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StockScreen() {
     val stockItems = listOf(
-        StockItem("Apple", 10),
-        StockItem("Banana", 20),
-        StockItem("Orange", 30)
+        StockItem(1L, "Apple", 10),
+        StockItem(2L, "Banana", 20),
+        StockItem(3L, "Orange", 30)
     )
 
     Scaffold(
@@ -71,7 +71,10 @@ fun StockScreen() {
             contentPadding = PaddingValues(16.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            items(stockItems) { item ->
+            items(
+                items = stockItems,
+                key = { item -> item.id }
+            ) { item ->
                 StockListItem(item)
             }
         }
