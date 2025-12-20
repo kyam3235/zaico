@@ -2,16 +2,18 @@ package jp.kyamlab.zaico
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.lifecycle.viewmodel.compose.viewModel
 import org.jetbrains.compose.ui.tooling.preview.Preview
+import org.koin.compose.viewmodel.koinViewModel
+import org.koin.core.annotation.KoinExperimentalAPI
 import presentation.stock.StockScreen
 import presentation.stock.StockViewModel
 
+@OptIn(KoinExperimentalAPI::class)
 @Composable
 @Preview
 fun App() {
     MaterialTheme {
-        val viewModel: StockViewModel = viewModel { StockViewModel() }
+        val viewModel: StockViewModel = koinViewModel()
         StockScreen(viewModel = viewModel)
     }
 }
