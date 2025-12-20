@@ -8,5 +8,3 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
         appDeclaration()
         modules(platformModule, appModule)
     }
-
-fun initKoin() = initKoin {}
