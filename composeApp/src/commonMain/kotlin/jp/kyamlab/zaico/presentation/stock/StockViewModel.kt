@@ -1,7 +1,7 @@
-package presentation.stock
+package jp.kyamlab.zaico.presentation.stock
 
 import androidx.lifecycle.ViewModel
-import domain.model.StockItem
+import jp.kyamlab.zaico.domain.model.StockItem
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

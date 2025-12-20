@@ -1,4 +1,4 @@
-package presentation.stock
+package jp.kyamlab.zaico.presentation.stock
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,7 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import domain.model.StockItem
+import jp.kyamlab.zaico.domain.model.StockItem
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import zaico.composeapp.generated.resources.Res
