@@ -56,6 +56,10 @@ in your IDE’s toolbar or open the [/iosApp](./iosApp) directory in Xcode and r
 ---
 
 Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html),
+
+## UIデザイン
+
+- [Figma](https://www.figma.com/make/ZI3EQKXE0t54xsQcxmpBJ0/Zaico?t=8M7YnaQZLk6cYCaI-1)
 [Compose Multiplatform](https://github.com/JetBrains/compose-multiplatform/#compose-multiplatform),
 [Kotlin/Wasm](https://kotl.in/wasm/)…
 
