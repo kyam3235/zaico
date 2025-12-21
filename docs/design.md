@@ -12,6 +12,7 @@
 
 ## 3. モジュール構成
 - `jp.kyamlab.zaico.domain.model`: データクラスの定義
+- `jp.kyamlab.zaico.data.repository`: データソースを抽象化するリポジトリ層
 - `jp.kyamlab.zaico.presentation.stock`: 在庫管理画面のUIおよびViewModel
 
 ## 4. 詳細設計
