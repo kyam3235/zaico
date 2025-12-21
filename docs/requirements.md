@@ -31,6 +31,6 @@
 
 ## 5. データモデル（案）
 - **StockItem (在庫アイテム)**
-    - ID (識別子)
-    - Name (商品名)
-    - Quantity (在庫数)
+    - `id: Long` (一意識別子)
+    - `name: String` (商品名)
+    - `quantity: Int` (在庫数)
