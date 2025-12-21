@@ -37,7 +37,7 @@
 - `incrementQuantity(itemId: Long)`: 指定した商品の在庫を+1する。
 - `decrementQuantity(itemId: Long)`: 指定した商品の在庫を-1する（最小値0）。
 - `addItem(name: String, initialQuantity: Int)`: 新しい商品を追加する。
-- `deleteItem(item: StockItem)`: 指定した商品を削除する。
+- `deleteItem(itemId: Long)`: 指定した商品を削除する。
 
 ## 5. データの永続化 (将来拡張)
 現在はメモリ内での管理とするが、将来的に以下の対応を検討する。
