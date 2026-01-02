@@ -33,7 +33,6 @@ class StockViewModel(
             stockItemRepository.insert(
                 item = StockItem(
                     name = "New Item",
-                    id = (0..100).random().toLong(),
                     quantity = 100
                 )
             )
