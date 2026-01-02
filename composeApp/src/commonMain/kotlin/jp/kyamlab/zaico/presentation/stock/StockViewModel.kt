@@ -8,7 +8,6 @@ import androidx.lifecycle.viewModelScope
 import jp.kyamlab.zaico.domain.model.StockItem
 import jp.kyamlab.zaico.domain.repository.StockItemRepository
 import kotlinx.coroutines.launch
-import kotlin.random.Random
 
 class StockViewModel(
     private val stockItemRepository: StockItemRepository
@@ -31,11 +30,10 @@ class StockViewModel(
 
     fun addItem() {
         viewModelScope.launch {
-            val rand = Random(0)
             stockItemRepository.insert(
                 item = StockItem(
                     name = "New Item",
-                    id = rand.nextLong(),
+                    id = (0..100).random().toLong(),
                     quantity = 100
                 )
             )
