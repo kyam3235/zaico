@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalForeignApi::class)
-
 package jp.kyamlab.zaico
 
 import androidx.room.Room
@@ -11,12 +9,13 @@ import platform.Foundation.NSFileManager
 import platform.Foundation.NSUserDomainMask
 
 fun getDatabaseBuilder(): RoomDatabase.Builder<AppDatabase> {
-    val dbFilePath = documentDirectory() + "zaico.db"
+    val dbFilePath = documentDirectory() + "/zaico.db"
     return Room.databaseBuilder<AppDatabase>(
         name = dbFilePath,
     )
 }
 
+@OptIn(ExperimentalForeignApi::class)
 private fun documentDirectory(): String {
     val documentDirectory = NSFileManager.defaultManager.URLForDirectory(
         directory = NSDocumentDirectory,

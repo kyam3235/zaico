@@ -1,32 +1,44 @@
 package jp.kyamlab.zaico.presentation.stock
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import jp.kyamlab.zaico.domain.model.StockItem
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
+import jp.kyamlab.zaico.domain.repository.StockItemRepository
+import kotlinx.coroutines.launch
+import kotlin.random.Random
 
-class StockViewModel : ViewModel() {
-    private val _uiState = MutableStateFlow(
-        StockUiState(
-            stockItems = listOf(
-                StockItem(1L, "Apple", 10),
-                StockItem(2L, "Banana", 20),
-                StockItem(3L, "Orange", 30)
-            )
-        )
-    )
-    val uiState: StateFlow<StockUiState> = _uiState.asStateFlow()
+class StockViewModel(
+    private val stockItemRepository: StockItemRepository
+) : ViewModel() {
+    var uiState by mutableStateOf(value = StockUiState())
+
+    init {
+        viewModelScope.launch {
+            stockItemRepository.getAllAsFlow().collect {
+                uiState = uiState.copy(stockItems = it)
+            }
+        }
+    }
 
     fun deleteItem(itemToDelete: StockItem) {
-        _uiState.update { currentState ->
-            val updatedItems = currentState.stockItems.filter { it.id != itemToDelete.id }
-            currentState.copy(stockItems = updatedItems)
+        viewModelScope.launch {
+            stockItemRepository.delete(itemToDelete)
         }
     }
 
     fun addItem() {
-        // TODO: Implement logic to add a new item
+        viewModelScope.launch {
+            val rand = Random(0)
+            stockItemRepository.insert(
+                item = StockItem(
+                    name = "New Item",
+                    id = rand.nextLong(),
+                    quantity = 100
+                )
+            )
+        }
     }
 }

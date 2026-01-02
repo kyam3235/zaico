@@ -1,8 +1,5 @@
 package jp.kyamlab.zaico.di
 
-import jp.kyamlab.zaico.getPlatform
-import org.koin.dsl.module
+import jp.kyamlab.zaico.getPlatformModule
 
-val platformModule = module {
-    single { getPlatform() }
-}
+val platformModule = getPlatformModule()

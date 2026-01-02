@@ -1,9 +1,13 @@
 package jp.kyamlab.zaico
 
-import platform.UIKit.UIDevice
+import jp.kyamlab.zaico.database.AppDatabase
+import jp.kyamlab.zaico.database.getRoomDatabase
+import org.koin.core.module.Module
+import org.koin.dsl.module
 
-class IOSPlatform: Platform {
-    override val name: String = UIDevice.currentDevice.systemName() + " " + UIDevice.currentDevice.systemVersion
+actual fun getPlatformModule(): Module = module {
+    single<AppDatabase> {
+        val builder = getDatabaseBuilder()
+        getRoomDatabase(builder = builder)
+    }
 }
-
-actual fun getPlatform(): Platform = IOSPlatform()
