@@ -1,7 +1,5 @@
 package jp.kyamlab.zaico
 
-interface Platform {
-    val name: String
-}
+import org.koin.core.module.Module
 
-expect fun getPlatform(): Platform
+expect fun getPlatformModule(): Module

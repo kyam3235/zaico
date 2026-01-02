@@ -15,10 +15,9 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import jp.kyamlab.zaico.domain.model.StockItem
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -27,13 +26,24 @@ import zaico.composeapp.generated.resources.add
 import zaico.composeapp.generated.resources.icon_content_descriptions_add
 import zaico.composeapp.generated.resources.stock_screen_title
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun StockScreen(
     viewModel: StockViewModel,
 ) {
-    val uiState by viewModel.uiState.collectAsState()
+    StockContent(
+        uiState = viewModel.uiState,
+        onDelete = { viewModel.deleteItem(it) },
+        onAddClick = { viewModel.addItem() },
+    )
+}
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun StockContent(
+    uiState: StockUiState,
+    onDelete: (StockItem) -> Unit,
+    onAddClick: () -> Unit,
+) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -45,7 +55,7 @@ fun StockScreen(
             )
         },
         floatingActionButton = {
-            FloatingActionButton(onClick = { viewModel.addItem() }) {
+            FloatingActionButton(onClick = onAddClick) {
                 Icon(
                     modifier = Modifier.size(24.dp),
                     painter = painterResource(resource = Res.drawable.add),
@@ -67,7 +77,7 @@ fun StockScreen(
             ) { item ->
                 StockListItem(
                     item = item,
-                    onDeleteClick = { viewModel.deleteItem(item) }
+                    onDeleteClick = { onDelete(item) }
                 )
             }
         }
@@ -78,8 +88,16 @@ fun StockScreen(
 @Composable
 private fun StockScreenPreview() {
     MaterialTheme {
-        StockScreen(
-            viewModel = StockViewModel()
+        StockContent(
+            uiState = StockUiState(
+                stockItems = listOf(
+                    StockItem(1, "Apple", 10),
+                    StockItem(2, "Banana", 5),
+                    StockItem(3, "Orange", 20)
+                )
+            ),
+            onDelete = {},
+            onAddClick = {}
         )
     }
 }

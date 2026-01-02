@@ -1,9 +1,13 @@
 package jp.kyamlab.zaico
 
-import android.os.Build
+import jp.kyamlab.zaico.database.AppDatabase
+import jp.kyamlab.zaico.database.getRoomDatabase
+import org.koin.core.module.Module
+import org.koin.dsl.module
 
-class AndroidPlatform : Platform {
-    override val name: String = "Android ${Build.VERSION.SDK_INT}"
+actual fun getPlatformModule(): Module = module {
+    single<AppDatabase> {
+        val builder = getDatabaseBuilder(context = get())
+        getRoomDatabase(builder = builder)
+    }
 }
-
-actual fun getPlatform(): Platform = AndroidPlatform()
