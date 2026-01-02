@@ -17,4 +17,3 @@ captures
 !*.xcworkspace/contents.xcworkspacedata
 **/xcshareddata/WorkspaceSettings.xcsettings
 node_modules/
-/composeApp/schemas/jp.kyamlab.zaico.database.AppDatabase/*.json
